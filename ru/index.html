@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Finalyzer AI — Панель управления</title>
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="Finalyzer AI — автоматический анализ финансовых отчетов на основе ИИ">
+</head>
+<body>
+  <header class="container header">
+    <a href="index.html" class="brand">
+      <div class="logo">FZ</div>
+      <div class="brand-text">
+        <div class="title">Finalyzer AI</div>
+        <div class="sub">MAAB Talents · Финансовая аналитика на основе ИИ</div>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="../ru/solution.html">Решение</a>
+      <a href="../ru/team.html">Команда</a>
+      <a href="../ru/roadmap.html">Дорожная карта</a>
+      <a href="../ru/tech.html" class="active">Как это работает?</a>
+      <a href="../ru/about-contact.html">Почему мы? & Контакты</a>
+    </nav>
+
+    <div class="row">
+      <div class="lang-switch" aria-hidden="false">
+        <a href="../uz/index.html" aria-current="true">UZ</a>
+        <a href="../en/index.html">EN</a>
+        <a href="../ru/index.html">RU</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="margin-top:18px">
+    <div class="grid-12">
+      <section class="col-8 panel hover-glow">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="min-width:220px">
+            <div class="title">Дашборд Finalyzer AI</div>
+            <div class="small" style="margin-top:8px;color:var(--muted)">Загрузите файл — ИИ, Q&A на LLM и автоматический финансовый анализ.</div>
+
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+              <a href="../ru/solution.html" class="btn">Проблема & Решение</a>
+              <a href="../ru/tech.html" class="btn">Как это работает?</a>
+              <a href="../ru/about-contact.html" class="btn">Контакты</a>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:14px" class="kpi-row">
+          <div class="kpi">
+            <div class="label">Выручка (TTM)</div>
+            <div class="value">₽ 12,450,000</div>
+            <div class="small" style="color:var(--muted)">Г/г: +12.3%</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">EBITDA</div>
+            <div class="value">₽ 3,120,000</div>
+            <div class="small" style="color:var(--muted)">Кв/кв: +4.1%</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Валовая маржа</div>
+            <div class="value">42.4%</div>
+            <div class="small" style="color:var(--muted)">Устойчиво</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Долг/капитал</div>
+            <div class="value">0.86x</div>
+            <div class="small" style="color:var(--muted)">Хорошо</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:14px">
+          <div class="panel">
+            <div style="font-weight:800">Динамика выручки</div>
+            <div class="chart" style="margin-top:10px"><img src="../images/line_chart_showing_monthly_revenue_trend_of_company_for_2_years_slide01.jpg" alt="chart" width="370px" height="230px"></div>
+          </div>
+
+          <div class="panel">
+            <div style="font-weight:800">Предпросмотр извлеченных данных</div>
+            <table class="table" style="margin-top:10px">
+              <thead><tr><th>Показатель</th><th>2024</th><th>2023</th></tr></thead>
+              <tbody>
+                <tr><td>Выручка</td><td>12,450,000</td><td>11,090</td></tr>
+                <tr><td>Себестоимость (COGS)</td><td>7,160,000</td><td>6,430</td></tr>
+                <tr><td>EBITDA</td><td>3,120,000</td><td>2,996</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+      <aside class="col-4">
+        <div class="panel hover-glow">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-weight:800">ИИ чат (LLM)</div>
+            <div class="small" style="color:var(--muted)">Обучен на FinQA</div>
+          </div>
+
+          <div class="chat" style="margin-top:20px">
+            <div class="msg ai" style="margin-top:10px">ИИ: "Тренд EBITDA положительный, основная причина — снижение операционных расходов."</div>
+            <div class="msg user" style="margin-top:10px">Пользователь: "Покажи аномалии за II квартал"</div>
+            <div class="msg ai" style="margin-top:10px">ИИ: "Расходы на маркетинг были переклассифицированы в II квартале — одноразово."</div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <a href="../ru/tech.html" class="btn" style="margin-top:10px" >Как это работает</a>
+            <a href="../ru/solution.html" class="btn" style="margin-top:10px">Загрузить</a>
+          </div>
+        </div>
+
+        <div class="panel hover-glow" style="margin-top:55px">
+          <div style="font-weight:800">Быстрые действия</div>
+          <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap">
+            <a href="../ru/" class="btn">Экспорт PDF</a>
+            <a href="../ru/export.html" class="btn">Экспорт Excel</a>
+            <a href="../ru/about-contact.html" class="btn">Поделиться</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Full width bottom -->
+      <div class="col-12" style="margin-top:50px;display:grid;grid-template-columns:2fr 1fr;gap:12px">
+        <div class="panel hover-glow">
+          <div style="font-weight:800">Последние загрузки</div>
+          <table class="table" style="margin-top:10px">
+            <thead><tr><th>Файл</th><th>Дата</th><th>Тип</th><th>Результат</th></tr></thead>
+            <tbody>
+              <tr><td>company_A_2024.pdf</td><td>2025-11-10</td><td>PDF</td><td>Parsed</td></tr>
+              <tr><td>clientX_Q2.xlsx</td><td>2025-10-02</td><td>Excel</td><td>Parsed</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel hover-glow">
+          <div style="font-weight:800">Система</div>
+          <div style="margin-top:8px;color:var(--muted)">
+            Очередь извлечения: <strong style="color:var(--text)">2</strong><br>
+            Задержка LLM: <strong style="color:var(--text)">~300 мс</strong><br>
+            Хранилище: <strong style="color:var(--text)">120 ГБ / 1 ТБ</strong>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- grid end -->
+
+    <footer class="footer" style="margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-weight:800">Finalyzer AI</div>
+        <div class="small" style="color:var(--muted)">MAAB Talents · Финансовая аналитика на основе ИИ</div>
+      </div>
+      <div class="small">© 2025 · <a href="../ru/about-contact.html" style="color:var(--accent-2);text-decoration:none">Контакты</a></div>
+    </footer>
+  </main>
+</body>
+</html>

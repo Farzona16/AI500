@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Finalyzer AI — MAAB Talents</title>
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="Команда MAAB Talents — специалисты по ИИ, Data Engineering и Web Development." />
+  <style>
+    :root{
+      --bg:#071428;
+      --panel: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      --muted: rgba(255,255,255,0.75);
+      --text: #EAF6FF;
+      --accent1:#6C63FF;
+      --accent2:#1FB6FF;
+      --card-radius:14px;
+      --shadow: 0 18px 50px rgba(2,6,23,0.6);
+      --gap:18px;
+      --max-width:1200px;
+    }
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:var(--bg);color:var(--text)}
+    .container{max-width:var(--max-width);margin:20px auto;padding:0 18px;box-sizing:border-box}
+
+    /* Header / Nav (consistent with other pages) */
+    .header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+    .logo{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent1),var(--accent2));font-weight:900}
+    .brand-text .title{font-weight:800}
+    .brand-text .sub{color:var(--muted);font-size:13px}
+
+    .nav{display:flex;gap:12px;align-items:center}
+    .nav a{padding:8px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:700}
+    .nav a.active{background:rgba(255,255,255,0.03);color:var(--text);box-shadow:0 10px 28px rgba(2,6,23,0.45)}
+
+    .lang-switch{display:flex;gap:8px}
+    .lang-switch a{padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--muted);text-decoration:none;font-weight:700}
+
+    .cta{padding:8px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;text-decoration:none;font-weight:800}
+
+    /* Page hero */
+    .page-hero{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02);box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .h1{font-size:22px;font-weight:800;margin:0}
+    .h-sub{color:var(--muted);margin-top:6px;font-size:14px}
+
+    /* Team grid using 12-col idea */
+    .team-grid{margin-top:var(--gap);display:grid;grid-template-columns: repeat(12, 1fr);gap:var(--gap);align-items:start;grid-auto-rows: 1fr}
+    @media (max-width:999px){ .team-grid{grid-template-columns: repeat(6, 1fr)} }
+    @media (max-width:699px){ .team-grid{grid-template-columns: repeat(1, 1fr)} }
+
+    .card{
+      grid-column: span 12;
+      background:var(--panel);
+      border-radius:var(--card-radius);
+      padding:16px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.45);
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      transition:transform .18s cubic-bezier(.2,.9,.3,1), box-shadow .18s ease;
+      min-height:120px;
+      box-sizing:border-box;
+    }
+    .card:hover{ transform:translateY(-8px); box-shadow:var(--shadow) }
+
+    /* avatar */
+    .avatar{width:96px;height:96px;border-radius:12px;flex-shrink:0;overflow:hidden;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .card-body{flex:1;display:flex;flex-direction:column;gap:8px}
+    .name{font-weight:800;font-size:16px}
+    .role{font-weight:700;color:#BFD9FF;font-size:13px}
+    .skills{color:var(--muted);font-size:14px;line-height:1.55}
+    .stack{color:var(--muted);font-size:13px;margin-top:6px}
+
+    .links{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--text);text-decoration:none;font-weight:800;font-size:13px}
+    .icon-btn svg{width:16px;height:16px;opacity:0.95}
+    .icon-btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.5)}
+
+    /* Desktop column mapping */
+    @media(min-width:1000px){
+      .member-1{grid-column: 1 / span 4}
+      .member-2{grid-column: 5 / span 4}
+      .member-3{grid-column: 9 / span 4}
+      .member-4{grid-column: 3 / span 4}
+      .member-5{grid-column: 7 / span 4}
+    }
+    @media(min-width:700px) and (max-width:999px){
+      .card{grid-column: span 6}
+    }
+
+    .note{font-size:13px;color:var(--muted);margin-top:14px}
+
+    /* responsive tweaks */
+    @media(max-width:420px){
+      .avatar{width:72px;height:72px}
+      .card{padding:12px}
+      .name{font-size:15px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header" role="banner">
+      <a class="brand" href="../ru/index.html">
+        <div class="logo">FZ</div>
+        <div class="brand-text">
+          <div class="title">Finalyzer AI</div>
+          <div class="sub">MAAB Talents · AI финансовая аналитика</div>
+        </div>
+      </a>
+
+      <nav class="nav" role="navigation" aria-label="Основная навигация">
+        <a href="solution.html">Решение</a>
+        <a href="team.html" class="active">Команда</a>
+        <a href="roadmap.html">Дорожная карта</a>
+        <a href="tech.html">Как это работает</a>
+        <a href="about-contact.html">Почему мы? & Контакты</a>
+      </nav>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="lang-switch">
+          <a href="../uz/team.html">UZ</a>
+          <a href="../en/team.html">EN</a>
+          <a href="../ru/team.html">RU</a>
+        </div>
+        <a class="cta" href="index.html">Панель</a>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero" aria-labelledby="team-h">
+      <div>
+        <div style="font-weight:800;color:var(--text)">О нашей команде</div>
+        <h1 id="team-h" class="h1">MAAB Talents</h1>
+        <div class="h-sub">MAAB Talents — команда, работающая на стыке искусственного интеллекта, инженерии данных и веб-технологий, специализируется на практических решениях реальных бизнес-задач. Участники команды обладают взаимодополняющими техническими навыками и опытом в автоматизации финансовых документов, аналитических системах на основе ИИ и упрощении сложных процессов обработки данных.</div>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <a href="about-contact.html" class="icon-btn">Почему мы?</a>
+        <a href="roadmap.html" class="icon-btn">Дорожная карта</a>
+      </div>
+    </section>
+
+    <!-- TEAM GRID -->
+    <div class="team-grid" role="list">
+
+      <!-- Member 1 -->
+      <article class="card member-1" role="listitem" aria-labelledby="m1-name">
+        <div class="avatar">
+          <img src="../images/Sanjarbek.png" alt="Санджарбек Гуломджонов - AI инженер (руководитель команды)">
+        </div>
+
+        <div class="card-body">
+          <div>
+            <div id="m1-name" class="name">Санджарбек Г‘уломджонов</div>
+            <div class="role">AI инженер (Team Lead)</div>
+          </div>
+
+          <div class="skills">
+Санджарбек Г‘уломджонов — разработка продвинутых AI и LLM, оптимизация моделей, анализ финансовых данных
+          </div>
+
+          <div class="stack">Технологический стек: Python, PyTorch, HuggingFace, FastAPI, Docker</div>
+
+          <div class="links">
+            <a class="icon-btn" href="https://github.com/Sanjarbek1024" target="_blank" rel="noopener">GitHub</a>
+            <a class="icon-btn" href="http://www.linkedin.com/in/sanjarbek-gulomjonov" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="icon-btn" href="../cvs/CV Sanjarbek Gulomjonov.pdf" target="_blank" rel="noopener">CV</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Member 2 -->
+      <article class="card member-2" role="listitem" aria-labelledby="m2-name">
+        <div class="avatar"><img src="../images/Farzona4.jpg" alt="Фарзонахон Хусанбоева - Data инженер"></div>
+
+        <div class="card-body">
+          <div><div id="m2-name" class="name">Фарзонахон Хусанбоева</div><div class="role">Data инженер</div></div>
+
+          <div class="skills">
+Фарзонахон Хусанбоева — Data Engineering, разработка ETL-пайплайнов, обработка структурированных данных
+          </div>
+
+          <div class="stack">Технологический стек: Python, SQL, Pandas, Airflow</div>
+
+          <div class="links">
+            <a class="icon-btn" href="https://github.com/Farzona16" target="_blank" rel="noopener">GitHub</a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/farzonaxon-xusanboyeva-009550343" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="icon-btn" href="../cvs/Contact-xusanboyevafarzonaxongmailcom (2).pdf" target="_blank" rel="noopener">CV</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Member 3 -->
+      <article class="card member-3" role="listitem" aria-labelledby="m3-name">
+        <div class="avatar"><img src="../images/Azizbek.jpg" alt="Азизбек Турсунов - ML разработчик"></div>
+
+        <div class="card-body">
+          <div><div id="m3-name" class="name">Азизбек Турсунов</div><div class="role">ML разработчик</div></div>
+
+          <div class="skills">
+Азизбек Турсунов — разработка машинного обучения, обучение и оценка моделей, предиктивный анализ
+          </div>
+
+          <div class="stack">Технологический стек: scikit-learn, PyTorch, FastAPI</div>
+
+          <div class="links">
+            <a class="icon-btn" href="https://github.com/agtursunov" target="_blank" rel="noopener">GitHub</a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/azizbek-tursunov-106639387" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="icon-btn" href="../cvs/Azizbek_CV.pdf" target="_blank" rel="noopener">CV</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Member 4 -->
+      <article class="card member-4" role="listitem" aria-labelledby="m4-name">
+        <div class="avatar"><img src="../images/Lochinbek.jpg" alt="Лочинбек Рахимжонов - Разработчик"></div>
+
+        <div class="card-body">
+          <div><div id="m4-name" class="name">Лочинбек Рахимжонов</div><div class="role">Разработчик</div></div>
+
+          <div class="skills">
+Лочинбек Рахимжонов — Full-Stack разработка, интеграция систем, реализация UI/UX
+          </div>
+
+          <div class="stack">Технологический стек: JavaScript, React, Node.js, TailwindCSS</div>
+
+          <div class="links">
+            <a class="icon-btn" href="https://github.com/lo4in" target="_blank" rel="noopener">GitHub</a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/lochinbek-r" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="icon-btn" href="../cvs/Raximjonov_CV_en.pdf" target="_blank" rel="noopener">CV</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Member 5 -->
+      <article class="card member-5" role="listitem" aria-labelledby="m5-name">
+        <div class="avatar"><img src="../images/Dilshod.jpg" alt="Дилшод Азамджонов - Data & ML инженер"></div>
+
+        <div class="card-body">
+          <div><div id="m5-name" class="name">Дилшод Азамджонов</div><div class="role">Data & ML инженер</div></div>
+
+          <div class="skills">
+Дилшод Азамджонов — обработка данных, проектирование ML-пайплайнов, аналитическое моделирование
+          </div>
+
+          <div class="stack">Технологический стек: Python, Pandas, TensorFlow/PyTorch, SQL</div>
+
+          <div class="links">
+            <a class="icon-btn" href="https://github.com/dilshodazamjonov" target="_blank" rel="noopener">GitHub</a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/dilshod-a-zamjonov-779399287" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="icon-btn" href="../cvs/Dilshod A’zamjonov.pdf" target="_blank" rel="noopener">CV</a>
+          </div>
+        </div>
+      </article>
+
+    </div> <!-- team-grid -->
+
+  </div>
+
+  <footer style="margin-top:36px;padding:18px;color:var(--muted);font-size:13px">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-weight:800">Finalyzer AI</div>
+      <div>© 2025</div>
+    </div>
+  </footer>
+</body>
+</html>

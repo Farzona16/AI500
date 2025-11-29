@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Finalyzer AI — Проблема и Решение</title>
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="Finalyzer AI - Проблема и Решение: автоматическое чтение и анализ финансовых отчетов на основе ИИ.">
+  <style>
+    /* --- Page-specific enhancements + equal-height fix --- */
+    .solution-hero{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .section-title{font-size:18px;font-weight:800;color:var(--text);margin:0}
+    .section-sub{color:var(--muted);margin-top:6px;font-size:13px}
+
+    /* solution grid: equal-height behavior */
+    .solution-grid{
+      display:grid;
+      grid-template-columns:7fr 5fr;
+      gap:18px;
+      align-items:stretch;
+      grid-auto-rows: 1fr; /* make grid row heights equal */
+    }
+    @media (max-width:1100px){
+      .solution-grid{grid-template-columns:1fr; grid-auto-rows:auto}
+    }
+
+    /* panels that must be equal height */
+    .panel.equal{
+      display:flex !important;
+      flex-direction:column;
+      justify-content:space-between;
+      height:100%;    /* fill the grid cell height */
+      min-height:0;   /* allow shrinking on small screens */
+      padding:18px;
+      box-sizing:border-box;
+    }
+
+    /* allow main content to scroll inside panel if overflow */
+    .panel.equal > .panel-body{
+      overflow:auto;
+    }
+
+    /* icon list for nicer bullets */
+    .icon-list{list-style:none;padding:0;margin:0}
+    .icon-list li{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:12px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    .icon-mark{
+      flex:0 0 32px;
+      width:32px;height:32px;border-radius:8px;
+      background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
+      display:inline-flex;align-items:center;justify-content:center;color:white;font-weight:800;
+      box-shadow:0 8px 22px rgba(0,0,0,0.35);
+      font-size:13px;
+    }
+
+    .muted-block{color:var(--muted);font-size:14px}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .decor-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent);margin:12px 0;border-radius:2px}
+
+    /* ensure consistent title spacing inside panels */
+    .panel .title{margin:0 0 8px 0;font-weight:800;font-size:16px}
+    .panel .small{margin-top:6px}
+
+    /* small screens adjustments */
+    @media (max-width:700px){
+      .icon-mark{width:28px;height:28px;font-size:12px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="container header">
+    <a href="../en/index.html" class="brand">
+      <div class="logo">FZ</div>
+      <div class="brand-text">
+        <div class="title">Finalyzer AI</div>
+        <div class="sub">MAAB Talents · AI Financial Insight</div>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Asosiy navigatsiya">
+      <a href="../ru/solution.html" class="active">Решение</a>
+      <a href="../ru/team.html">Команда</a>
+      <a href="../ru/roadmap.html">Дорожная карта</a>
+      <a href="../ru/tech.html">Как это работает</a>
+      <a href="../ru/about-contact.html">О нас & Контакты</a>
+    </nav>
+
+    <div class="row">
+      <div class="lang-switch" aria-hidden="false">
+        <a href="../uz/solution.html" aria-current="true">UZ</a>
+        <a href="../en/solution.html">EN</a>
+        <a href="../ru/solution.html">RU</a>
+      </div>
+      <a href="../ru/index.html" class="cta">Панель</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container" style="margin-top:18px">
+    <!-- Page header / hero -->
+    <div class="panel hover-glow solution-hero">
+      <div>
+        <div class="product-badge" style="padding:8px 12px">Проблема и решение</div>
+        <h1 class="section-title" style="margin-top:8px">Finalyzer AI — быстрый и точный анализ финансовых отчетов</h1>
+        <div class="section-sub">Мы автоматизируем финансовые процессы с помощью ИИ: извлечение данных, аналитика и вопрос-ответ (LLM).</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end">
+            <div class="small muted-block">Хакатон AI500</div>
+      </div>
+    </div>
+
+    <!-- Solution grid (Muammo left, Yechim right) -->
+    <div class="solution-grid" style="margin-top:18px">
+
+      <!-- MUAMMO (left) -->
+      <section class="panel equal" aria-labelledby="muammo-title">
+        <div class="panel-body">
+          
+          <h2 id="muammo-title" class="title">Проблема</h2>
+          <div class="muted-block" style="margin-top:10px;line-height:1.6">
+            Финансовый сектор сегодня остаётся одной из областей, требующих наибольшего объёма ручной обработки. Банки, компании, инвесторы и аудиторские организации вынуждены вручную читать финансовые отчёты, проверять цифры и анализировать тысячи страниц ежедневно. Этот процесс не только медленный, но и сильно подвержен человеческим ошибкам.
+
+            <h4>**Более 55% времени финансовых аналитиков уходит на сбор и очистку данных — а не на их анализ.</h4>
+
+            <h4>**96% аудиторов и аналитиков сообщают о ручных ошибках при работе с документами Excel или PDF.</h4>
+
+            <h4>**Крупные корпорации обрабатывают в среднем более 4500 страниц финансовой отчётности в год — ручное чтение занимает примерно 6–14 дней.</h4>
+
+            <h4>**Неправильные или неточные финансовые расчёты ежегодно приводят к потерям бизнеса в размере 3–8%.</h4>
+
+            <h4>**Средняя компания в Узбекистане ежемесячно работает с 25–40 финансовыми документами (PDF/Excel/CSV), что является значительной оперативной нагрузкой даже для малого бизнеса.</h4>
+          </div>
+
+
+          <div class="decor-line" aria-hidden="true"></div>
+
+          <div style="margin-top:6px;font-weight:700;color:var(--text)">Это приводит к нескольким реальным проблемам:</div>
+          <ul class="icon-list" style="margin-top:10px">
+            <li><span class="icon-mark">1</span><span>Задержки в принятии финансовых решений</span></li>
+            <li><span class="icon-mark">2</span><span>Риск некорректных расчётов</span></li>
+            <li><span class="icon-mark">3</span><span>Чрезмерная ручная работа в банковских и финтех-процессах</span></li>
+            <li><span class="icon-mark">4</span><span>Низкая эффективность при работе с клиентами</span></li>
+            <li><span class="icon-mark">5</span><span>Ограниченный доступ к финансовому анализу для малого бизнеса</span></li>
+          </ul>
+        </div>
+
+        <!-- CTA area stays at bottom to align with right panel -->
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div class="small" style="color:var(--muted)">Проблема актуальна и широко распространена.</div>
+          <div class="cta-row">
+            <a href="../ru/index.html" class="btn">Вернуться на панель</a>
+            <a href="../ru/team.html" class="btn">Команда</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- YECHIM (right) -->
+      <aside class="panel equal" aria-labelledby="yechim-title">
+        <div class="panel-body">
+          <h2 id="yechim-title" class="title">Решение</h2>
+          <div class="muted-block" style="margin-top:10px;line-height:1.6">
+            Платформа, разработанная командой MAAB Talents, — это система на базе ИИ для автоматического чтения и анализа финансовых отчётов.
+          </div>
+
+          <div class="decor-line" aria-hidden="true"></div>
+
+          <div style="margin-top:6px;font-weight:700;color:var(--text)">Наше решение предоставляет:</div>
+          <ul class="icon-list" style="margin-top:10px">
+            <li><span class="icon-mark">•</span><span>Автоматическое извлечение данных из PDF/Excel/CSV</span></li>
+            <li><span class="icon-mark">•</span><span>Точное Q&A с использованием LLM, дообученного на датасете FinQA</span></li>
+            <li><span class="icon-mark">•</span><span>Аналитику на основе ИИ: инсайты, тренды и прогнозы</span></li>
+            <li><span class="icon-mark">•</span><span>Автоматический расчёт ключевых показателей: рост выручки, маржа, EBITDA, коэффициент долг/капитал и др.</span></li>
+            <li><span class="icon-mark">•</span><span>Веб-интерфейс для загрузки документов, получения сводки, общения с чат-ботом и экспорта результатов</span></li>
+          </ul>
+
+          <div class="decor-line" aria-hidden="true"></div>
+
+          <div style="margin-top:6px;font-weight:700;color:var(--text)">Это решение:</div>
+          <ul class="icon-list" style="margin-top:10px">
+            <li><span class="icon-mark">✓</span><span>Ускоряет работу банковских и корпоративных аналитиков</span></li>
+            <li><span class="icon-mark">✓</span><span>Снижает количество ошибок</span></li>
+            <li><span class="icon-mark">✓</span><span>Переводит принятие решений на уровень, основанный на данных</span></li>
+            <li><span class="icon-mark">✓</span><span>Делает профессиональный финансовый анализ доступным и недорогим для малого бизнеса</span></li>
+          </ul>
+        </div>
+
+        <!-- CTA at bottom -->
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div class="small" style="color:var(--muted)">В результате — экономическая эффективность</div>
+          <div class="cta-row">
+            <a href="../ru/tech.html" class="btn">Технологии</a>
+            <a href="../ru/roadmap.html" class="btn">Дорожная карта</a>
+          </div>
+        </div>
+      </aside>
+
+    </div> <!-- solution-grid end -->
+
+    <!-- Full-width summary / final paragraph -->
+    <div style="margin-top:18px" class="panel hover-glow">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:800">Заключение</div>
+          <div class="small muted-block" style="margin-top:8px">В результате наша платформа на базе ИИ решает реальные финансовые задачи и обеспечивает значительную экономическую эффективность за счёт автоматизации процессов</div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center">
+          <a href="../ru/index.html" class="cta">Вернуться на панель</a>
+          <a href="../ru/about-contact.html" class="btn">Контакты</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer" style="margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-weight:800">Finalyzer AI</div>
+        <div class="small" style="color:var(--muted)">MAAB Talents · AI Financial Insight</div>
+      </div>
+      <div class="small">© 2025 · <a href="../ru/about-contact.html" style="color:var(--accent-2);text-decoration:none">Contact</a></div>
+    </footer>
+  </main>
+</body>
+</html>
