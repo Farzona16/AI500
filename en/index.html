@@ -6,6 +6,136 @@
   <title>Finalyzer AI — Dashboard</title>
   <link rel="stylesheet" href="../style.css">
   <meta name="description" content="Finalyzer AI — AI asosida moliyaviy hisobotlarni avtomatik tahlil qilish">
+  <style>
+    /* ===== Additions / fixes for chat + sidebar layout ===== */
+
+    /* Make panels flex columns so children can size properly */
+    .panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 0; /* important for flex children to be able to shrink */
+    }
+
+    /* Ensure aside column uses full available height and stacks nicely */
+    aside {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 0;
+    }
+
+    /* Make the right-panel (chat container) not grow unlimited.
+       Use viewport calc so chat area fits between header and footer.
+       Adjust the 220px value if your header+other paddings differ. */
+    .panel .chat-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 0;
+      /* Allow the chat area to take remaining space, but never exceed viewport */
+      max-height: calc(100vh - 220px); /* header + margins + footer; tune as needed */
+      overflow: hidden;
+    }
+
+    /* The chat itself will scroll internally when long */
+    .chat {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 6px 0;
+      min-height: 0;
+      overflow: auto;
+      /* smooth scrolling */
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(108,99,255,0.3) transparent;
+    }
+
+    .chat::-webkit-scrollbar{ width: 8px; height: 8px; }
+    .chat::-webkit-scrollbar-thumb{ background: rgba(108,99,255,0.25); border-radius:8px; }
+
+    /* message base */
+    .msg{
+      max-width:76%;
+      padding:12px 14px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
+      border: 1px solid rgba(255,255,255,0.03);
+      color: #EAF6FF;
+      box-shadow: 0 8px 24px rgba(2,6,23,0.45);
+      position: relative;
+      line-height:1.45;
+      word-wrap:break-word;
+      min-width: 90px;
+    }
+
+    /* AI messages (left aligned) */
+    .msg.ai{
+      align-self:flex-start;
+      border-top-left-radius:6px;
+      border-top-right-radius:12px;
+      border-bottom-right-radius:12px;
+      background: linear-gradient(180deg, rgba(10,20,40,0.85), rgba(8,14,28,0.75));
+      border:1px solid rgba(31,182,255,0.06);
+    }
+
+    /* User messages (right aligned) */
+    .msg.user{
+      align-self:flex-end;
+      border-top-left-radius:12px;
+      border-top-right-radius:6px;
+      border-bottom-left-radius:12px;
+      background: linear-gradient(180deg, rgba(108,99,255,0.12), rgba(31,182,255,0.06));
+      color: #fdfeff;
+      border:1px solid rgba(108,99,255,0.12);
+    }
+
+    /* Tag pill - place relative inside message so it doesn't overflow layout */
+    .msg .tag{
+      display:inline-block;
+      padding:6px 8px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      background: linear-gradient(90deg,#6C63FF,#1FB6FF);
+      color:white;
+      box-shadow:0 8px 18px rgba(31,182,255,0.06);
+      margin-bottom:8px;
+      position: relative; /* was absolute — changed to relative to avoid overlaps */
+      top: 0;
+    }
+
+    /* make user tag style reversed */
+    .msg.user .tag{
+      background: linear-gradient(90deg,#1fb6ff,#6c63ff);
+      color:#061225;
+    }
+
+    /* message content spacing */
+    .msg .text{ padding-top:6px; font-size:14px; }
+
+    /* small meta row under each message */
+    .msg .meta{
+      margin-top:8px;
+      font-size:12px;
+      color: rgba(234,246,255,0.6);
+      opacity:0.85;
+    }
+
+    /* ensure chat area doesn't push footer on small screens:
+       limit section height and let page scroll rather than expanding sidebar */
+    @media (max-width:1100px){
+      .panel .chat-wrapper { max-height: none; } /* on mobile let full page scroll */
+      .chat { max-height: 360px; } /* but still reasonable */
+    }
+
+    /* responsive tweaks */
+    @media (max-width:900px){
+      .msg{ max-width:100%; }
+      .msg .tag{ font-size:11px; padding:5px 7px; }
+    }
+  </style>
 </head>
 <body>
   <header class="container header">
@@ -52,13 +182,13 @@
         <div style="margin-top:14px" class="kpi-row">
           <div class="kpi">
             <div class="label">Revenue (TTM)</div>
-            <div class="value">₽ 12,450,000</div>
+            <div class="value">$ 12,450,000</div>
             <div class="small" style="color:var(--muted)">YoY: +12.3%</div>
           </div>
 
           <div class="kpi">
             <div class="label">EBITDA</div>
-            <div class="value">₽ 3,120,000</div>
+            <div class="value">$ 3,120,000</div>
             <div class="small" style="color:var(--muted)">QoQ: +4.1%</div>
           </div>
 
@@ -78,7 +208,7 @@
         <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:14px">
           <div class="panel">
             <div style="font-weight:800">Revenue trend</div>
-            <div class="chart" style="margin-top:10px"><img src="../images/line_chart_showing_monthly_revenue_trend_of_company_for_2_years_slide01.jpg" alt="chart" width="370px" height="230px"></div>
+            <div class="chart" style="margin-top:10px"><img src="../images/chart.jpg" alt="chart" width="370px" height="230px"></div>
           </div>
 
           <div class="panel">
@@ -102,10 +232,24 @@
             <div class="small" style="color:var(--muted)">FinQA tuned</div>
           </div>
 
-          <div class="chat" style="margin-top:20px">
-            <div class="msg ai" style="margin-top:10px">AI: "The trend of EBITDA is positive, main cause is decreasing of OPEX."</div>
-            <div class="msg user" style="margin-top:10px">User: "Show me Q2 anomalies"</div>
-            <div class="msg ai" style="margin-top:10px">AI: "Marketing expenses were reclassified in Q2 — one-time."</div>
+          <!-- CHAT (replace existing chat div) -->
+          <div class="chat-wrapper">
+            <div class="chat" role="log" aria-live="polite">
+              <div class="msg ai">
+                <div class="tag">AI</div>
+                <div class="text">In 2024, gross profit was 35% and debt-equity 0.4x, showing stable and healthy growth.</div>
+              </div>
+
+              <div class="msg user">
+                <div class="tag">User</div>
+                <div class="text">What was the company’s EBITDA growth last year?</div>
+              </div>
+
+              <div class="msg ai">
+                <div class="tag">AI</div>
+                <div class="text">The company’s EBITDA increased by approximately 18,000 units in 2024 compared to 2023, representing around a 10% growth.</div>
+              </div>
+            </div>
           </div>
 
           <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
@@ -114,9 +258,9 @@
           </div>
         </div>
 
-        <div class="panel hover-glow" style="margin-top:55px">
+        <div class="panel hover-glow" style="margin-top:18px">
           <div style="font-weight:800">Quick actions</div>
-          <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap">
+          <div style="margin-top:50px;display:flex;gap:8px;flex-wrap:wrap">
             <a href="../en/export.html" class="btn">Export PDF</a>
             <a href="../en/export.html" class="btn">Export Excel</a>
             <a href="../about-contact.html" class="btn">Share</a>
@@ -131,8 +275,8 @@
           <table class="table" style="margin-top:10px">
             <thead><tr><th>File</th><th>Date</th><th>Type</th><th>Result</th></tr></thead>
             <tbody>
-              <tr><td>company_A_2024.pdf</td><td>2025-11-10</td><td>PDF</td><td>Parsed</td></tr>
-              <tr><td>clientX_Q2.xlsx</td><td>2025-10-02</td><td>Excel</td><td>Parsed</td></tr>
+              <tr><td>totalenergies_fin-report_2025.pdf</td><td>2025-11-10</td><td>PDF</td><td>Parsed</td></tr>
+              <tr><td>financial_perform_2023-2024.xlsx</td><td>2025-10-02</td><td>Excel</td><td>Parsed</td></tr>
             </tbody>
           </table>
         </div>
@@ -142,7 +286,7 @@
           <div style="margin-top:8px;color:var(--muted)">
             Extraction queue: <strong style="color:var(--text)">2</strong><br>
             LLM latency: <strong style="color:var(--text)">~300 ms</strong><br>
-            Storage: <strong style="color:var(--text)">120 GB / 1 TB</strong>
+            Storage: <strong style="color:var(--text)"> 27MB/ 1 TB</strong>
           </div>
         </div>
       </div>

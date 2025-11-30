@@ -131,7 +131,7 @@ body{
 /* chat */
 .chat{display:flex;flex-direction:column;gap:10px;height:240px}
 .msg{padding:10px 12px;border-radius:12px;max-width:100%;width:max-content}
-.msg.user{background:rgba(255,255,255,0.03);color:var(--text)}
+.msg.user{margin-right:100px,rgba(255,255,255,0.03);color:var(--text)}
 .msg.ai{background:linear-gradient(90deg, rgba(108,99,255,0.12), rgba(31,182,255,0.08));color:white;align-self:flex-start}
 
 /* buttons as links accessible */
